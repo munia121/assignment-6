@@ -7,11 +7,80 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.7.2/dist/full.min.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://kit.fontawesome.com/bbe0395e13.js" crossorigin="anonymous"></script>
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <!-- font family -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Poppins&display=swap" rel="stylesheet">
+    <style>
+        .fonts{
+            font-family: "Mulish", sans-serif;
+        }
+    </style>
 </head>
-<body>
-    
+<body class="lg:w-[1200px] mx-auto mt-10">
+    <!--***************header section*********************-->
+    <header>
+        <div class="flex justify-between p-4">
+            <div>
+                <img src="images/logo.png" alt="">
+            </div>
+            <div >
+                <div class="flex items-center gap-5 ">
+                    <img class="hidden lg:block" src="images/Frame (5).svg" alt="">
+                    <img class="hidden lg:block" src="images/Frame (6).svg" alt="">
+                    <img class="hidden lg:block" src="images/Frame (7).svg" alt="">
+                    <img class="hidden lg:block" src="images/Frame (8).svg" alt="">
+                    <p class="bg-[#797DFC] font-bold p-3 px-10 text-white rounded-full">Sig in</p>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!--****************main section*******************-->
+    <main>
+        <!-- banner section -->
+        
+        <section>
+            <div>
+                <div class="hero min-h-screen bg-[linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.1)),url('./images/bgbanner')]">
+                    <div class="hero-content flex-col lg:flex-row-reverse">
+                        <div class="lg:w-[350px] border p-7 bg-white space-y-4 rounded-2xl">
+                            <div class="flex justify-between">
+                                <p class="text-xl">Registered Users</p>
+                                <h3 class="text-xl">01</h3>
+                            </div>
+                            <div class="flex justify-between">
+                                <p class="text-xl">Forum</p>
+                                <h3 class="text-xl">05</h3>
+                            </div>
+                            <div class="flex justify-between">
+                                <p class="text-xl">Topics</p>
+                                <h3 class="text-xl">01</h3>
+                            </div>
+                            <div class="flex justify-between">
+                                <p class="text-xl"> Replies</p>
+                                <h3 class="text-xl">01</h3>
+                            </div>
+                        </div>
+                      <div>
+                        <h1 class="text-3xl text-white  fonts lg:text-[60px] font-[900] space-y-2">Welcome to the <br> </h1>
+                        <span class="text-[#797DFC] text-[60px] font-[900]">ReTro Forum</span>
+                        <p class="mt-10 lg:w-[400px]">Provident cupiditate voluptatem et in. Quaerat .</p>
+                        
+                        <div class="mt-10">
+                            <input type="text" placeholder="Type here" class="input rounded-full input-bordered w-full max-w-xs absolute" />
+                            <button class="p-2 mt-1 rounded-full bg-[#797DFC] relative ml-[220px]">Get Started</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+        </section>
+    </main>
+    <!--****************footer section*****************-->
+    <footer>
 
+    </footer>
     <!-- script js -->
     <script src="script/script.js"></script>
 </body>
