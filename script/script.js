@@ -21,25 +21,25 @@ const loadData =async () =>{
             <!-- **** -->
             <div>
                 <div class="flex gap-5">
-                    <p>#Music</p>
-                    <p>Author:Aliwa Diyan</p>
+                    <p>#${post.category}</p>
+                    <p>Author: ${post.author.name}</p>
                 </div>
-                <h1 class="text-xl font-bold mt-4">10 Kids Unaware of Their Halloween Costume</h1>
-                <p class="lg:w-[500px] text-[#0C0D2D99] mt-5">It’s one thing to subject yourself to ha Halloween costume mishap because, hey that’s your prerogative</p>
+                <h1 class="text-xl font-bold mt-4">${post.title}</h1>
+                <p class="lg:w-[500px] text-[#0C0D2D99] mt-5">${post.description}</p>
                 <hr class="mt-5">
             <div class="flex items-center justify-between">
                     <div class="mt-5 flex gap-10">
                         <div class="flex gap-2">
                             <img src="images/massage.svg" alt="">
-                            <p>560</p>
+                            <p>${post.comment_count}</p>
                         </div>
                         <div class="flex gap-2 items-center">
                             <i class="fa-regular fa-eye"></i>
-                            <p>560</p>
+                            <p>${post.view_count}</p>
                         </div>
                         <div class="flex gap-2 items-center">
                             <i class="fa-regular fa-clock"></i>
-                            <p>5 min</p>
+                            <p>${post.posted_time} min</p>
                     </div>
                 
                 </div>
