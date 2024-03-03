@@ -1,5 +1,7 @@
 const postCard = document.getElementById('post-card')
 
+
+let count = 0;
 const loadData =async () =>{
     const res = await fetch('https://openapi.programming-hero.com/api/retro-forum/posts');
     const data = await res.json();
@@ -44,7 +46,7 @@ const loadData =async () =>{
                 
                 </div>
                 <div class="mt-5">
-                    <img src="images/email 1.svg" alt="">
+                    <img onclick= "postAdd('${post.title}', '${post.view_count}')" src="images/email 1.svg" alt="">
                 </div>   
             </div>
             </div>
@@ -53,4 +55,32 @@ const loadData =async () =>{
         postCard.appendChild(divContent)
     });
 }
+
+const postAdd = (data,view) =>{
+    console.log(data,view)
+    const titleContainer = document.getElementById('title-container');
+    const div = document.createElement('div');
+    div.classList.add('flex')
+    div.classList.add('gap-[50px]')
+    div.classList.add('bg-white')
+    div.classList.add('rounded-2xl')
+    div.classList.add('justify-center')
+    div.classList.add('p-2')
+    const p1 = document.createElement('p')
+    const p2 = document.createElement('p')
+    p1.innerText = data
+    p2.innerText = view
+    div.appendChild(p1)
+    div.appendChild(p2)
+    titleContainer.appendChild(div)
+
+
+    count++;
+    const initialValue = document.getElementById('initial-value');
+    initialValue.innerText = count;
+    console.log(count)
+
+}
+
+
 loadData()
