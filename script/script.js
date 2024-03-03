@@ -1,12 +1,23 @@
 const postCard = document.getElementById('post-card')
+const cardContainer = document.getElementById('card-container')
 
 
 let count = 0;
-const loadData =async () =>{
-    const res = await fetch('https://openapi.programming-hero.com/api/retro-forum/posts');
+const loadData =async (categoryName) =>{
+    
+    document.getElementById('loading-spinner').style.display = 'block'
+    const res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/posts?category=${categoryName}`);
     const data = await res.json();
-    console.log(data.posts)
+    console.log(data)
+    setTimeout(() => {
+        document.getElementById('loading-spinner').style.display = 'none'
+    }, 2000);
+
+    // console.log(data.posts)
+    postCard.innerHTML= '';
     data.posts.forEach(post => {
+       
+
         // const div = document.createElement('div');
         const divContent = document.createElement('div') 
         divContent.innerHTML = `
@@ -14,7 +25,7 @@ const loadData =async () =>{
             <div id="" class="lg:flex gap-5  bg-[#F3F3F5] lg:w-[780px] rounded-2xl p-10">
             <div class="">
                 <div class="indicator">
-                    <span class="indicator-item badge bg-green-500"></span> 
+                    <span id='indicate' class="indicator-item badge bg-green-500"></span> 
                     <div class="grid w-32 h-32 bg-base-300 place-items-center">
                         <img src="${post.image}" alt="">
                     </div>
@@ -52,7 +63,9 @@ const loadData =async () =>{
             </div>
         </div>
         `;
+
         postCard.appendChild(divContent)
+
     });
 }
 
@@ -82,5 +95,73 @@ const postAdd = (data,view) =>{
 
 }
 
+// const searchFetch = async (categoryName) =>{
+//     const res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/posts?category=${categoryName}`)
+//     const data = await res.json();
+//     console.log(data)
+// }
 
-loadData()
+
+const searchBtn = () =>{
+    const inputField = document.getElementById('input-field').value; 
+    loadData(inputField)
+    
+}
+
+// searchFetch()
+
+
+loadData('comedy')
+
+     
+const fetchData = async() =>{
+    const res = await fetch('https://openapi.programming-hero.com/api/retro-forum/latest-posts');
+    const data =await res.json();
+    console.log(data)
+    data.forEach(card =>{
+        
+
+        let post_date = '';
+        let design = '';
+        console.log(card.author.designation)
+        if(card.author.designation){
+            design = card.author.designation
+        }
+        else{
+            design ='Unknown'
+        }
+        
+
+        if(card.author.posted_date){
+            post_date= card.author.posted_date;
+        }
+        else{
+            post_date = 'No publish date'
+        }
+
+
+        const div = document.createElement('div');
+        div.innerHTML = `
+            <div class="h-[500px]  lg:w-[375px] border rounded-lg p-5">
+            <div>
+                <img class="h-[250px]" src="${card.cover_image}" alt="">
+            </div>
+            <div class="flex items-center gap-2 mt-5">
+                <i class="fa-regular fa-calendar"></i>
+                <p>${post_date}</p>
+            </div>
+            <p class="font-bold">${card.title}</p>
+            <p class="mt-4 text-[#0C0D2D99]">${card.description}</p>
+            <div class="mt-3 flex gap-4">
+                <img class="w-10 h-10 rounded-full border" src="${card.profile_image}" alt="">
+                <div>
+                    <p class="font-bold">${card.author.name}</p>
+                    <p>${design}</p>
+                </div>
+            </div>
+        </div>
+        `;
+        cardContainer.appendChild(div)
+    })
+}
+fetchData()
