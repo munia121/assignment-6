@@ -17,7 +17,7 @@ const loadData =async (categoryName) =>{
     postCard.innerHTML= '';
     data.posts.forEach(post => {
        
-
+        console.log(post.isActive)
         // const div = document.createElement('div');
         const divContent = document.createElement('div') 
         divContent.innerHTML = `
@@ -25,7 +25,7 @@ const loadData =async (categoryName) =>{
             <div id="" class="lg:flex gap-5  bg-[#F3F3F5] lg:w-[780px] rounded-2xl p-10">
             <div class="">
                 <div class="indicator">
-                    <span id='indicate' class="indicator-item badge bg-green-500"></span> 
+                    <span id='indicate' class="indicator-item badge  ${post.isActive?'bg-green-500':'bg-red-500'}"></span>
                     <div class="grid w-32 h-32 bg-base-300 place-items-center">
                         <img src="${post.image}" alt="">
                     </div>
@@ -40,17 +40,17 @@ const loadData =async (categoryName) =>{
                 <h1 class="text-xl font-bold mt-4">${post.title}</h1>
                 <p class="lg:w-[500px] text-[#0C0D2D99] mt-5">${post.description}</p>
                 <hr class="mt-5">
-            <div class="flex items-center justify-between">
-                    <div class="mt-5 flex gap-10">
+                <div class="lg:flex items-center justify-between">
+                    <div class="mt-5 flex lg:gap-10 gap-4">
                         <div class="flex gap-2">
                             <img src="images/massage.svg" alt="">
                             <p>${post.comment_count}</p>
                         </div>
-                        <div class="flex gap-2 items-center">
+                        <div id='views' class="flex gap-2 items-center">
                             <i class="fa-regular fa-eye"></i>
                             <p>${post.view_count}</p>
                         </div>
-                        <div class="flex gap-2 items-center">
+                        <div id='views' class="flex gap-2 items-center">
                             <i class="fa-regular fa-clock"></i>
                             <p>${post.posted_time} min</p>
                     </div>
@@ -82,7 +82,7 @@ const postAdd = (data,view) =>{
     const p1 = document.createElement('p')
     const p2 = document.createElement('p')
     p1.innerText = data
-    p2.innerText = view
+    p2.innerText =view
     div.appendChild(p1)
     div.appendChild(p2)
     titleContainer.appendChild(div)
@@ -104,8 +104,9 @@ const postAdd = (data,view) =>{
 
 const searchBtn = () =>{
     const inputField = document.getElementById('input-field').value; 
+    inputField.value ='';
     loadData(inputField)
-    
+      
 }
 
 // searchFetch()
@@ -117,13 +118,13 @@ loadData('comedy')
 const fetchData = async() =>{
     const res = await fetch('https://openapi.programming-hero.com/api/retro-forum/latest-posts');
     const data =await res.json();
-    console.log(data)
+    // console.log(data)
     data.forEach(card =>{
         
 
         let post_date = '';
         let design = '';
-        console.log(card.author.designation)
+        // console.log(card.author.designation)
         if(card.author.designation){
             design = card.author.designation
         }
@@ -144,7 +145,7 @@ const fetchData = async() =>{
         div.innerHTML = `
             <div class="h-[500px]  lg:w-[375px] border rounded-lg p-5">
             <div>
-                <img class="h-[250px]" src="${card.cover_image}" alt="">
+                <img class="h-[250px] rounded-lg" src="${card.cover_image}" alt="">
             </div>
             <div class="flex items-center gap-2 mt-5">
                 <i class="fa-regular fa-calendar"></i>
@@ -152,7 +153,7 @@ const fetchData = async() =>{
             </div>
             <p class="font-bold">${card.title}</p>
             <p class="mt-4 text-[#0C0D2D99]">${card.description}</p>
-            <div class="mt-3 flex gap-4">
+            <div class="mt-1 flex gap-4">
                 <img class="w-10 h-10 rounded-full border" src="${card.profile_image}" alt="">
                 <div>
                     <p class="font-bold">${card.author.name}</p>
