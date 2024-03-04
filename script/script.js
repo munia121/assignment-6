@@ -1,5 +1,6 @@
 const postCard = document.getElementById('post-card')
 const cardContainer = document.getElementById('card-container')
+const emptyData = document.getElementById('empty-data')
 
 
 let count = 0;
@@ -8,13 +9,24 @@ const loadData =async (categoryName) =>{
     document.getElementById('loading-spinner').style.display = 'block'
     const res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/posts?category=${categoryName}`);
     const data = await res.json();
+    // document.getElementById('loading-spinner').style.display = 'none'
     console.log(data)
     setTimeout(() => {
         document.getElementById('loading-spinner').style.display = 'none'
     }, 2000);
 
+
+    if(data.posts.length === 0){
+        emptyData.style.display = 'block'
+    }
+    else{
+        emptyData.style.display = 'none'
+    }
+   
+
     // console.log(data.posts)
     postCard.innerHTML= '';
+   
     data.posts.forEach(post => {
        
         console.log(post.isActive)
@@ -57,7 +69,7 @@ const loadData =async (categoryName) =>{
                 
                 </div>
                 <div class="mt-5">
-                    <img onclick= "postAdd('${post.title}', '${post.view_count}')" src="images/email 1.svg" alt="">
+                    <img onclick= "postAdd('${post.title}','${post.view_count}')" src="images/email 1.svg" alt="">
                 </div>   
             </div>
             </div>
@@ -69,7 +81,9 @@ const loadData =async (categoryName) =>{
     });
 }
 
+
 const postAdd = (data,view) =>{
+    
     console.log(data,view)
     const titleContainer = document.getElementById('title-container');
     const div = document.createElement('div');
@@ -82,7 +96,7 @@ const postAdd = (data,view) =>{
     const p1 = document.createElement('p')
     const p2 = document.createElement('p')
     p1.innerText = data
-    p2.innerText =view
+    p2.innerText = view
     div.appendChild(p1)
     div.appendChild(p2)
     titleContainer.appendChild(div)
@@ -104,8 +118,8 @@ const postAdd = (data,view) =>{
 
 const searchBtn = () =>{
     const inputField = document.getElementById('input-field').value; 
-    inputField.value ='';
     loadData(inputField)
+    inputField.value ='';
       
 }
 
@@ -113,6 +127,7 @@ const searchBtn = () =>{
 
 
 loadData('comedy')
+
 
      
 const fetchData = async() =>{

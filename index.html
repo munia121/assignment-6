@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Retro</title>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.7.2/dist/full.min.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://kit.fontawesome.com/bbe0395e13.js" crossorigin="anonymous"></script>
@@ -78,7 +78,7 @@
                       <div>
                         <h1 class="text-3xl text-white  fonts lg:text-[60px] font-[900] lg:space-y-2">Welcome to the <br> </h1>
                         <div class=" lg:mt-7">
-                            <span class="text-[#797DFC] text-3xl lg:text-[60px] font-[900]">ReTro Forum</span>
+                            <span class="text-[#797DFC] text-3xl lg:text-[60px] font-[900]">ReTro <span class="text-white">Forum</span></span>
                         </div>
                         <p class="mt-10 w-full lg:w-[400px] text-white">Share your favorite opinion and win and wp forum coffee mug!</p>
                         
@@ -106,7 +106,10 @@
         </section>
         <!-- ***********daynamic first card****************** -->
         <section class="mt-16">
-            <div class="lg:flex  justify-between ">
+            <div id="empty-data" class="hidden">
+                <h1 class="lg:text-5xl text-3xl text-violet-500 ">Oppss! No Posts found
+            </div>
+            <div class="lg:flex   justify-between ">
                 <!-- card container -->
 
                 <div id="post-card" class="space-y-4">
@@ -170,6 +173,9 @@
             </div>
           </div>
         </nav> 
+        <div class="bg-zinc-300 w-full">
+            <hr>
+        </div>
         <aside>
           <p>Copyright © 2024 - All right reserved by ACME Industries Ltd</p>
         </aside>
