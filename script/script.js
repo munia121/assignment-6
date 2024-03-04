@@ -9,18 +9,14 @@ const emptyData = document.getElementById('empty-data')
 let count = 0;
 const loadData =async () =>{
     
-    
     const res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/posts`);
     const data = await res.json();
-    // document.getElementById('loading-spinner').style.display = 'none'
     console.log(data)
     
-    // console.log(data.posts)
     postCard.innerHTML= '';
     
     data.posts.forEach(post => {
         // console.log(post.isActive)
-        // const div = document.createElement('div');
         const divContent = document.createElement('div') 
         divContent.innerHTML = `
         
@@ -86,7 +82,7 @@ const postAdd = (data,view) =>{
     const p1 = document.createElement('p')
     const p2 = document.createElement('p')
     p1.innerText = data
-    p2.innerText = view
+    p2.innerText = view   
     div.appendChild(p1)
     div.appendChild(p2)
     titleContainer.appendChild(div)
@@ -99,23 +95,20 @@ const postAdd = (data,view) =>{
 
 }
 
+
+
 const searchFetch = async (categoryName) =>{
     document.getElementById('loading-spinner').style.display = 'block'
     const res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/posts?category=${categoryName}`)
     const data = await res.json();
     console.log(data)
-    setTimeout(() => {
-        document.getElementById('loading-spinner').style.display = 'none'
-    }, 2000);
-
-    
-
+    // setTimeout(() => {
+    //     document.getElementById('loading-spinner').style.display = 'none'
+    // }, 2000);
+    document.getElementById('loading-spinner').style.display = 'none'
     postCard.innerHTML= '';
     
     data.posts.forEach(post => {
-
-        
-        
 
         console.log(post)
         // const div = document.createElement('div');
@@ -177,10 +170,7 @@ const searchBtn = (post) =>{
       
 }
 
-
-
 searchFetch()
-loadData()
 
 
      
@@ -235,3 +225,4 @@ const fetchData = async() =>{
     })
 }
 fetchData()
+loadData()
